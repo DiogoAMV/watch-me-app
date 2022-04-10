@@ -1,20 +1,21 @@
-import { MovieCard } from './MovieCard'
+import { MovieCard } from "./MovieCard";
+import { memo } from "react";
 
-import '../styles/content.scss'
+import "../styles/content.scss";
 
 interface ContentProps {
-  selectedGenre: { title: string }
+  selectedGenre: { title: string };
   movies: Array<{
-    Title: string
-    Poster: string
-    Runtime: string
+    Title: string;
+    Poster: string;
+    Runtime: string;
     Ratings: Array<{
-      Value: string
-    }>
-  }>
+      Value: string;
+    }>;
+  }>;
 }
 
-export function Content({ movies, selectedGenre }: ContentProps) {
+function ContentComponent({ movies, selectedGenre }: ContentProps) {
   return (
     <div className="container">
       <header>
@@ -25,7 +26,7 @@ export function Content({ movies, selectedGenre }: ContentProps) {
 
       <main>
         <div className="movies-list">
-          {movies.map(movie => (
+          {movies.map((movie) => (
             <MovieCard
               key={movie.Title}
               title={movie.Title}
@@ -37,5 +38,9 @@ export function Content({ movies, selectedGenre }: ContentProps) {
         </div>
       </main>
     </div>
-  )
+  );
 }
+
+export const Content = memo(ContentComponent, (prevProps, nextProps) => {
+  return Object.is(prevProps.movies, nextProps.movies);
+});

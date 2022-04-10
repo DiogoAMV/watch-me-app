@@ -1,24 +1,24 @@
-import { Button } from './Button'
+import { Button } from "./Button";
 
-import '../styles/sidebar.scss'
+import "../styles/sidebar.scss";
 
 interface SideBarProps {
   genres: Array<{
-    id: number
-    name: 'action' | 'comedy' | 'documentary' | 'drama' | 'horror' | 'family'
-    title: string
-  }>
-  selectedGenreId: number
-  setSelectedGenreId: (id: number) => void
+    id: number;
+    name: "action" | "comedy" | "documentary" | "drama" | "horror" | "family";
+    title: string;
+  }>;
+  selectedGenreId: number;
+  setSelectedGenreId: (id: number) => void;
 }
 
 export function SideBar({
   genres,
   selectedGenreId,
-  setSelectedGenreId
+  setSelectedGenreId,
 }: SideBarProps) {
   function handleClickButton(id: number) {
-    setSelectedGenreId(id)
+    setSelectedGenreId(id);
   }
 
   return (
@@ -28,7 +28,7 @@ export function SideBar({
       </span>
 
       <div className="buttons-container">
-        {genres.map(genre => (
+        {genres.map((genre) => (
           <Button
             key={String(genre.id)}
             title={genre.title}
@@ -39,5 +39,5 @@ export function SideBar({
         ))}
       </div>
     </nav>
-  )
+  );
 }
